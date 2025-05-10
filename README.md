@@ -40,10 +40,11 @@ cd homo
 2. **Set up the environment using conda:**
 
 ```bash
-conda create -n homo python=3.10
+conda create -n homo python=3.12
 conda activate homo
-pip install -r requirements.txt
+pip install -r requirements.txt 
 ```
+``torch'' may need to be installed from [the website](https://pytorch.org/get-started/locally/).
 
 3. **Run an example script:**
 
