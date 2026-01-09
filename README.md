@@ -1,6 +1,6 @@
 # homo
 
-
+For any questions related to this code, please contact: magic.linuxkde@gmail.com
 
 Title: High-Order Matching for One-Step Shortcut Diffusion Models. 
 
