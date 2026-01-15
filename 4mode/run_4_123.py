@@ -377,14 +377,14 @@ print(z_pairs.shape)
 # In[60]:
 
 
-iterations = 10001
+iterations = 10000
 batchsize = 2048
 input_dim = 2
 
 reflow_iterations = 2000
 # reflow_iterations = 180
-model1 = MLP(input_dim, hidden_num=100).to(device)
-model2 = MLP_2nd_order(input_dim, hidden_num=100).to(device)
+model1 = MLP(input_dim, hidden_num=70).to(device)  # 从100改为70，使参数数量与run_4_13.py相近
+model2 = MLP_2nd_order(input_dim, hidden_num=70).to(device)  # 从100改为70，使参数数量与run_4_13.py相近
 modellist = nn.ModuleList([model1, model2]).to(device)
 rectified_flow_2 = RectifiedFlow2(modellist, num_steps=100)
 # import copy

@@ -22,7 +22,7 @@ device = torch.device('cpu')
 source_mean = torch.tensor([0.0, 0.0])  # 中心位置
 source_cov = VAR * torch.eye(2)  # 方差矩阵
 initial_model = MultivariateNormal(source_mean, source_cov)
-samples_0 = initial_model.sample([600])  # 从单一高斯分布中采样
+samples_0 = initial_model.sample([800])  # 从单一高斯分布中采样
 
 # 目标分布 (π_1): 圆环分布
 angles = [k * (2 * np.pi / COMP) for k in range(COMP)]  # 圆环上各高斯分布的角度
@@ -32,7 +32,7 @@ target_mix = Categorical(torch.tensor([1 / COMP for _ in range(COMP)]))  # 均�
 target_comp = MultivariateNormal(torch.tensor(vertices_1).float(),  # 各高斯分布的均值
                                   VAR * torch.stack([torch.eye(2) for _ in range(COMP)]))  # 方差矩阵
 target_model = MixtureSameFamily(target_mix, target_comp)
-samples_1 = target_model.sample([600])  # 从圆环分布中采样
+samples_1 = target_model.sample([800])  # 从圆环分布中采样
 
 print('Shape of the samples:', samples_0.shape, samples_1.shape)
 
@@ -365,14 +365,14 @@ print(z_pairs.shape)
 # In[65]:
 
 
-iterations = 10001
+iterations = 10000
 batchsize = 2048
 input_dim = 2
 
 reflow_iterations = 1000
 # reflow_iterations = 180
-model1 = MLP(input_dim, hidden_num=100).to(device)
-model2 = MLP_2nd_order(input_dim, hidden_num=100).to(device)
+model1 = MLP(input_dim, hidden_num=70).to(device)  # 从100改为70，使参数数量与13_circle.py相近
+model2 = MLP_2nd_order(input_dim, hidden_num=70).to(device)  # 从100改为70，使参数数量与13_circle.py相近
 modellist = nn.ModuleList([model1, model2]).to(device)
 rectified_flow_2 = RectifiedFlow2(modellist, num_steps=100)
 # import copy

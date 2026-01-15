@@ -463,7 +463,7 @@ iterations = 10000
 batchsize = 2048
 input_dim = 2
 
-reflow_iterations = 1000
+reflow_iterations = 2000
 # reflow_iterations = 200
 model = MLP(input_dim, hidden_num=100).to(device)
 rectified_flow_1 = RectifiedFlow1(model, num_steps=100)
